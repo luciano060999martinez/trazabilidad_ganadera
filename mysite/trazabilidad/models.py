@@ -22,10 +22,10 @@ class Propietario(models.Model):
     propietario_direccion = models.CharField(max_length = 100)
     propietario_telefono = models.CharField(max_length = 50)
     sexo = models.CharField(max_length = 1, choices = sexos, default = 'M')
+    
+    def __str__(self) -> str:
+        return self.propietario_nombre + ' ' + self.propietario_apellido
 
-class Estado(models.Model):
-    #por defecto crea estado_id
-    estado_animal = models.CharField(max_length = 1, choices = estados, default = 'V')
 
 class Animal(models.Model):
     #por defecto crea el ID ANIMAL
@@ -33,7 +33,11 @@ class Animal(models.Model):
     raza = models.CharField(max_length=50)
     peso = models.FloatField()
     propietario = models.ForeignKey(Propietario, on_delete = models.CASCADE)
-    estado = models.ForeignKey(Estado, on_delete = models.CASCADE, null = True) #recien agregado
+    estado_animal = models.CharField(max_length = 1, choices = estados, default = 'V')
+
+    def __str__(self) -> str:
+        return self.codigo_animal 
+
 
 class Vacuna(models.Model): #recien agregado
     vacuna_nombre = models.CharField(max_length = 50)
