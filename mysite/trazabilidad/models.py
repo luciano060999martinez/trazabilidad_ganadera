@@ -33,4 +33,16 @@ class Animal(models.Model):
     raza = models.CharField(max_length=50)
     peso = models.FloatField()
     propietario = models.ForeignKey(Propietario, on_delete = models.CASCADE)
+    estado = models.ForeignKey(Estado, on_delete = models.CASCADE, null = True) #recien agregado
+
+class Vacuna(models.Model): #recien agregado
+    vacuna_nombre = models.CharField(max_length = 50)
+    vacuna_origen = models.CharField(max_length = 50)
+    vacuna_dosis = models.PositiveBigIntegerField(default = 0)
+
+class Vacuna_X_Animal(models.Model): #recien agregado
+    animal = models.ForeignKey(Animal, on_delete=models.CASCADE)
+    vacuna = models.ForeignKey(Vacuna, on_delete = models.CASCADE)
+
+
 
