@@ -5,8 +5,8 @@ from . import models
 @admin.register(models.Animal)
 class AnimalAdmin(admin.ModelAdmin):
     list_display = ('codigo_animal', 'estado_animal', 'propietario')
-    search_fields = ('id',)
-    #list_editable = ('estado',)
+    search_fields = ('estado_animal',)
+    list_editable = ('estado_animal',)
 
 
 @admin.register(models.Propietario)
